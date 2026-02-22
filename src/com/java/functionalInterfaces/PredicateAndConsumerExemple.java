@@ -2,6 +2,7 @@ package src.com.java.functionalInterfaces;
 
 import java.util.List;
 import java.util.function.BiConsumer;
+import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -12,6 +13,8 @@ public class PredicateAndConsumerExemple {
 
     Predicate<Student> gradeLevelPredicate = (student) -> student.getGradeLevel() > 10;
     Predicate<Student> gpaPredicate = (student) -> student.getGpa() > 3.5;
+
+    BiPredicate<Integer, Double> biPredicate = (gradeLevel, gpa) -> gradeLevel > 10 && gpa > 3.5;
     
     BiConsumer<String, List<String>> studentBiConsumer = (name, activities) -> {
         System.out.println("Name: " + name);
@@ -19,7 +22,7 @@ public class PredicateAndConsumerExemple {
     };
 
     Consumer<Student> studentConsumer = (student) -> {
-        if (gradeLevelPredicate.and(gpaPredicate).test(student)) {
+        if (biPredicate.test(student.getGradeLevel(), student.getGpa())) {
             studentBiConsumer.accept(student.getName(), student.getActivities());
         }
     };
