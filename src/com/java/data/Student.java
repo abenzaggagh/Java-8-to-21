@@ -38,6 +38,10 @@ public class Student {
         return activities;
     }
 
+    public void printActivities() {
+        System.out.println(activities);
+    }
+
     public String toString() {
         return "Student: \n\tName: " + name + "\n\tGrade Level: " + gradeLevel + "\n\tGPA: " + gpa + "\n\tGender: " + gender + "\n\tActivities: " + activities; 
     }

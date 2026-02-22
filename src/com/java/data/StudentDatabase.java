@@ -2,8 +2,14 @@ package src.com.java.data;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class StudentDatabase {
+
+    public static Supplier<Student> studentSupplier = () -> {
+        return getAllStudents().getFirst();
+    };
+
     /**
      * This method returns a list of students with their name, grade level, GPA, gender, and activities.
      * @return List of students
