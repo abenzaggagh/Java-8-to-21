@@ -1,7 +1,6 @@
 package src.com.java.lambda;
 
 import java.util.Comparator;
-import java.util.function.Consumer;
 
 public class ComparatorLambdaExemple {
     
