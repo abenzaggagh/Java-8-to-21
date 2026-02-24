@@ -576,3 +576,40 @@ Unlike groupingBy, it always creates exactly two groups:
 * false
 
 It is useful when dividing data into matching and non-matching categories.
+
+# Parallel Streams
+
+Parallel Streams allow stream operations to be executed concurrently using multiple threads.
+
+They leverage the Fork/Join Framework and the common thread pool to split the data into multiple chunks and process them in parallel.
+
+To create a parallel stream:
+* collection.parallelStream()
+* stream.parallel()
+
+Parallel streams can improve performance when:
+* The dataset is large
+* Operations are CPU-intensive
+* The stream pipeline is stateless
+* The data source can be efficiently split
+
+However, parallelism does not always mean better performance.
+
+## When to not use parallel streams
+
+Avoid parallel streams when:
+* The dataset is small
+→ Thread management overhead may be greater than the benefit.
+* Operations are I/O-bound
+→ Parallel streams are designed for CPU-bound tasks.
+* The stream has side effects
+→ Mutating shared state can cause race conditions.
+* Order matters
+→ Maintaining encounter order reduces performance.
+* The pipeline contains stateful operations
+→ Such as limit, distinct, or synchronized logic.
+* The environment is already multi-threaded
+→ It may compete for the common Fork/Join pool.
+
+Parallel streams should be used carefully and measured with benchmarks.
+Always test performance before assuming improvement.
