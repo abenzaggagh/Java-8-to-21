@@ -118,7 +118,7 @@ The Java platform, on the other hand, is the environment that makes this portabi
 
 Functional Programming uses the concept of declarative programming.
 
-[Exemple of Imperative Programming vs Declarative Programming](https://github.com/abenzaggagh/Java-8-to-21/blob/main/ImperativeDeclarativeExemple.java$0).
+[Exemple of Imperative Programming vs Declarative Programming](https://github.com/abenzaggagh/Java-8-to-21/blob/main/ImperativeDeclarativeExemple.java).
 
 # Lambda Expression
 
@@ -144,7 +144,7 @@ Lambda us mainly used to implement Functional Interfaces (SAM).
 @FunctionalInterface
 ```
 
-[Exemple of Lambda Expressions](https://github.com/abenzaggagh/Java-8-to-21/tree/main/src/com/java/lambda$0).
+[Exemple of Lambda Expressions](https://github.com/abenzaggagh/Java-8-to-21/tree/main/src/com/java/lambda).
 
 # Functional Interface
 
@@ -194,7 +194,7 @@ Functional Interfaces enable functional programming in Java and are mainly used 
 * Method references
 * Streams API
 
-[Exemple of Function Interface](https://github.com/abenzaggagh/Java-8-to-21/tree/main/src/com/java/functionalInterfaces$0).
+[Exemple of Function Interface](https://github.com/abenzaggagh/Java-8-to-21/tree/main/src/com/java/functionalInterfaces).
 
 # Method Reference
 
@@ -230,7 +230,7 @@ Equivalent Method Reference:
 Function<String, Integer> parse = Integer::parseInt;
 ```
 
-[Exemple of Method Reference](https://github.com/abenzaggagh/Java-8-to-21/tree/main/src/com/java/methodReference$0).
+[Exemple of Method Reference](https://github.com/abenzaggagh/Java-8-to-21/tree/main/src/com/java/methodReference).
 
 
 # Effective Final & Lambda Usage
@@ -467,3 +467,112 @@ They are commonly used when:
 * Switching between performance-focused numeric operations and object processing
 
 [Exemple of Numeric Streams](https://github.com/abenzaggagh/Java-8-to-21/tree/main/src/com/java/streams/numericStreams).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Streams – Terminal Operations
+
+Terminal operations produce a final result and close the stream.
+After a terminal operation is executed, the stream cannot be reused.
+
+## collect
+
+collect is a terminal operation used to accumulate stream elements into a mutable result container.
+
+Common usages:
+* Convert to List, Set, or Map
+* Group data
+* Perform custom aggregations
+
+It is often used with Collectors.
+
+## joining
+
+joining is a collector used to concatenate elements into a single String.
+
+It can:
+* Join with no delimiter
+* Join with a delimiter
+* Join with delimiter, prefix, and suffix
+
+Commonly used when transforming a stream of strings into formatted text.
+
+## counting
+
+counting is a collector that counts the number of elements in a stream.
+
+It is typically used inside groupingBy to count elements per group.
+
+Note: stream.count() is a direct terminal operation, while Collectors.counting() is used with collect.
+
+## mapping
+
+mapping is a downstream collector used inside other collectors like groupingBy.
+
+It applies a transformation before collecting the results.
+
+Useful when:
+* Grouping objects but collecting only specific fields
+* Transforming values inside aggregation
+
+## maxBy, minBy 
+
+maxBy and minBy are collectors used to find the maximum or minimum element based on a comparator.
+
+They return an Optional.
+
+Commonly used with groupingBy to find:
+* The highest value per group
+* The lowest value per category
+
+## summiningInt, avergingInt
+
+These collectors perform numeric aggregations:
+* summingInt → sums integer values
+* averagingInt → calculates the average
+
+Similar methods exist for long and double:
+* summingLong, summingDouble
+* averagingLong, averagingDouble
+
+They are commonly used with groupingBy.
+
+## groupingBy
+
+groupingBy groups elements based on a classification function.
+
+It produces a Map<Key, List<Value>> by default.
+
+It can also be combined with downstream collectors to:
+* Count elements per group
+* Sum values per group
+* Find max/min per group
+
+It is equivalent to SQL GROUP BY.
+
+## partitioningBy
+
+partitioningBy splits elements into two groups based on a predicate.
+
+It produces a Map<Boolean, List<T>>.
+
+Unlike groupingBy, it always creates exactly two groups:
+* true
+* false
+
+It is useful when dividing data into matching and non-matching categories.
